@@ -13,7 +13,7 @@ public class Codebreaker {
   private static final String CHARACTER_POOL = "ROYGBIV";
   private static final int CODE_LENGTH = 4;
 
-  public static void main (String[] args) throws IOException {
+  public static void main (String[] args) {
 
     Game game = new Game(CHARACTER_POOL, CODE_LENGTH, new SecureRandom());
     System.out.printf("Pool: %s. Code length: %d%n", CHARACTER_POOL, CODE_LENGTH);
@@ -21,13 +21,21 @@ public class Codebreaker {
     Reader input = new InputStreamReader(System.in);
     BufferedReader reader = new BufferedReader(input);
     do {
-      String text = reader.readLine();
-      Guess guess = game. guess (text);
-      if (guess.getCorrect() == CODE_LENGTH) {
-        System.out.printf("Congratulations! The secret code was %s.%n", game.getCode());
-        correct = true;
-      } else {
-        System.out.printf("Correct: %d. Close: %d.%n", guess.getCorrect(), guess.getClose());
+      try {
+        String text = reader.readLine();
+        Guess guess = game. guess (text);
+        if (guess.getCorrect() == CODE_LENGTH) {
+          System.out.printf("Congratulations! The secret code was %s.%n", game.getCode());
+          correct = true;
+        } else {
+          System.out.printf("Correct: %d. Close: %d.%n", guess.getCorrect(), guess.getClose());
+        }
+      } catch (IOException e) {
+        System.out.println("Unable to read input, program stopped, please try again.");
+        e.printStackTrace();
+        System.exit(1);
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
       }
     } while (!correct);
   }
