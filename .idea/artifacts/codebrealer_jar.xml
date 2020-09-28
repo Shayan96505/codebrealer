@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="codebrealer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/codebrealer_jar</output-path>
+    <root id="archive" name="codebrealer.jar">
+      <element id="module-output" name="codebrealer" />
+    </root>
+  </artifact>
+</component>
