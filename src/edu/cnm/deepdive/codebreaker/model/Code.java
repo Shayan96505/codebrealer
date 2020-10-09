@@ -9,10 +9,21 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+/**
+ * Generates a randomized code, of set-length for the user to guess such that
+ */
 public class Code {
 
   private final char[] secret;
 
+  /**
+   * Sets a random code from the pool of characters, for a specified code length, while utilizing
+   * a random number generator randomize the pool of characters assigned to the pool.
+   *
+   * @param pool
+   * @param length
+   * @param rng
+   */
   public Code(String pool, int length, Random rng) {
     secret = new char[length];
     for (int i = 0; i < length; i++) {
@@ -25,12 +36,19 @@ public class Code {
     return new String(secret);
   }
 
+/**
+ * Allows the user to guess UpperCase characters from the ROYGBIV pool for the codebreaker game
+ */
   public class Guess {
     private static final String STRING_FORMAT = "{text: \"%s\", correct : %d, close: %d}";
     private final String text;
     private final int correct;
     private final int close;
 
+  /**
+   * Allows guesses to be set using the letters entered by the user.
+   * @param text refers to text input by user into the GUI
+   */
     public Guess(String text) {
       this.text = text;
       int correct = 0;
@@ -81,14 +99,23 @@ public class Code {
       return String.format(STRING_FORMAT, text, correct, close);
     }
 
+  /**
+   * Returns the text of the this instance.
+   */
     public String getText() {
       return text;
     }
 
+  /**
+   * Returns the amount of correct guesses of this instance.
+   */
     public int getCorrect() {
       return correct;
     }
 
+  /**
+   * Returns the amount of close guess of this instance.
+   */
     public int getClose() {
       return close;
     }

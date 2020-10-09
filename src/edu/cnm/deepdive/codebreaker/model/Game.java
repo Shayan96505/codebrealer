@@ -63,4 +63,7 @@ public class Game {
     guesses.add(guess);
     return guess;
   }
+    public void restart() {
+    guesses.clear();
+  }
 }
