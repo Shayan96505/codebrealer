@@ -1,5 +1,9 @@
 package edu.cnm.deepdive.codebreaker.model;
 
+/**
+ * An exception that extends {@link IllegalArgumentException} for the incorrect use of pool of
+ * characters.
+ */
 public class IllegalGuessCharacterException extends IllegalArgumentException {
 
   public IllegalGuessCharacterException() {
