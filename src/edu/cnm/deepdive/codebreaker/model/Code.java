@@ -10,19 +10,19 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * Generates a randomized code, of set-length for the user to guess such that
+ * Generates a randomized code, of set-length from a pool of characters for the user to guess.
  */
 public class Code {
 
   private final char[] secret;
 
   /**
-   * Sets a random code from the pool of characters, for a specified code length, while utilizing
-   * a random number generator randomize the pool of characters assigned to the pool.
+   * Sets a random code from the pool of characters, for a specified code length, while utilizing a
+   * random number generator to randomize the characters assigned to the code.
    *
-   * @param pool
-   * @param length
-   * @param rng
+   * @param pool   of acceptable characters
+   * @param length the specified length of code
+   * @param rng    a source of randomness
    */
   public Code(String pool, int length, Random rng) {
     secret = new char[length];
@@ -31,23 +31,28 @@ public class Code {
     }
   }
 
+  /**
+   * @return the secret code as a string
+   */
   @Override
   public String toString() {
     return new String(secret);
   }
 
-/**
- * Allows the user to guess UpperCase characters from the ROYGBIV pool for the codebreaker game
- */
+  /**
+   * Utilizes secret code created in {@link Code} and compares user guess to code. The program
+   * responds with number of colors in the correct position and how colors were close (or ight, but
+   * not in the proper position).
+   */
   public class Guess {
     private static final String STRING_FORMAT = "{text: \"%s\", correct : %d, close: %d}";
     private final String text;
     private final int correct;
     private final int close;
 
-  /**
-   * Allows guesses to be set using the letters entered by the user.
-   * @param text refers to text input by user into the GUI
+    /**
+     * Allows guesses to be set using the characters entered by the user.
+     * @param text refers to text input by user into the GUI
    */
     public Guess(String text) {
       this.text = text;
@@ -106,15 +111,15 @@ public class Code {
       return text;
     }
 
-  /**
-   * Returns the amount of correct guesses of this instance.
+    /**
+     * Returns the amount of correct color guesses of this instance, in the correct position.
    */
     public int getCorrect() {
       return correct;
     }
 
-  /**
-   * Returns the amount of close guess of this instance.
+    /**
+     * Returns the amount of close guesses of this instance, proper color, but improper position.
    */
     public int getClose() {
       return close;
